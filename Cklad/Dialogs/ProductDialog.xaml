@@ -1,0 +1,58 @@
+﻿<Window x:Class="Cklad.Dialogs.ProductDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Товар" Height="480" Width="500" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Image Grid.Row="0" Source="{Binding PhotoPath}" Height="120" Stretch="Uniform" Margin="0,0,0,10"/>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Наименование*:" Margin="0,5,10,5" VerticalAlignment="Center"/>
+            <TextBox   Grid.Row="0" Grid.Column="1" x:Name="NameBox" Text="{Binding Name}" Padding="5" Margin="0,5"/>
+            <Button    Grid.Row="0" Grid.Column="2" Content="Фото..." Click="SelectPhoto_Click" Margin="5"/>
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Категория:" Margin="0,5,10,5"/>
+            <TextBox   Grid.Row="1" Grid.Column="1" Text="{Binding Category}" Padding="5" Margin="0,5" Grid.ColumnSpan="2"/>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Производитель:" Margin="0,5,10,5"/>
+            <TextBox   Grid.Row="2" Grid.Column="1" Text="{Binding Manufacturer}" Padding="5" Margin="0,5" Grid.ColumnSpan="2"/>
+
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Поставщик:" Margin="0,5,10,5"/>
+            <TextBox   Grid.Row="3" Grid.Column="1" Text="{Binding Supplier}" Padding="5" Margin="0,5" Grid.ColumnSpan="2"/>
+
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="Цена*:" Margin="0,5,10,5"/>
+            <TextBox   Grid.Row="4" Grid.Column="1" x:Name="PriceBox" Text="{Binding Price}" Padding="5" Margin="0,5" Grid.ColumnSpan="2"/>
+
+            <TextBlock Grid.Row="5" Grid.Column="0" Text="Остаток:" Margin="0,5,10,5"/>
+            <TextBox   Grid.Row="5" Grid.Column="1" x:Name="QuantityBox" Text="{Binding Quantity}" Padding="5" Margin="0,5" Grid.ColumnSpan="2"/>
+
+            <TextBlock Grid.Row="6" Grid.Column="0" Text="Скидка %:" Margin="0,5,10,5"/>
+            <TextBox   Grid.Row="6" Grid.Column="1" x:Name="DiscountBox" Text="{Binding DiscountPercent}" Padding="5" Margin="0,5" Grid.ColumnSpan="2"/>
+        </Grid>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+            <Button Content="OK" Width="80" Click="Ok_Click" IsDefault="True" Margin="5"/>
+            <Button Content="Отмена" Width="80" Click="Cancel_Click" IsCancel="True" Margin="5"/>
+        </StackPanel>
+    </Grid>
+</Window>

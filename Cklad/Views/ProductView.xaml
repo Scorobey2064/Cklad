@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="Cklad.Views.ProductView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5,0,0,5">
+            <Button Content="⬆ Приход"
+                    Command="{Binding InvoiceInCommand}"
+                    Background="#27AE60"
+                    Padding="10,5"/>
+            <Button Content="⬇ Расход"
+                    Command="{Binding InvoiceOutCommand}"
+                    Background="#E67E22"
+                    Padding="10,5"/>
+            <Button Content="📥 Импорт (CSV/Excel)"
+                    Command="{Binding ImportCommand}"
+                    Background="#F39C12"
+                    Padding="10,5"/>
+            <Button Content="📋 Накладные"
+                    Command="{Binding ShowInvoicesCommand}"
+                    Background="#3498DB"
+                    Padding="10,5"/>
+        </StackPanel>
+
+        <DataGrid Grid.Row="2"
+                  ItemsSource="{Binding Products}"
+                  SelectedItem="{Binding SelectedProduct}"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  RowHeight="80">
+
+            <DataGrid.InputBindings>
+                <MouseBinding MouseAction="LeftDoubleClick"
+                              Command="{Binding EditCommand}"/>
+            </DataGrid.InputBindings>
+
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Редактировать" Command="{Binding EditCommand}"/>
+                    <MenuItem Header="Удалить" Command="{Binding DeleteCommand}"/>
+                    <Separator/>
+                    <MenuItem Header="Добавить товар" Command="{Binding AddCommand}"/>
+                    <Separator/>
+                    <MenuItem Header="Оформить приход" Command="{Binding InvoiceInCommand}"/>
+                    <MenuItem Header="Оформить расход" Command="{Binding InvoiceOutCommand}"/>
+                    <Separator/>
+                    <MenuItem Header="Список накладных" Command="{Binding ShowInvoicesCommand}"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Фото" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding PhotoPath}" Width="70" Height="70"
+                                   Stretch="UniformToFill" Margin="5"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Наименование" Binding="{Binding Name}" Width="*"/>
+                <DataGridTextColumn Header="Категория" Binding="{Binding Category}" Width="120"/>
+                <DataGridTextColumn Header="Производитель" Binding="{Binding Manufacturer}" Width="120"/>
+                <DataGridTextColumn Header="Поставщик" Binding="{Binding Supplier}" Width="120"/>
+                <DataGridTextColumn Header="Цена" Binding="{Binding Price, StringFormat=C}" Width="100"/>
+                <DataGridTextColumn Header="Остаток" Binding="{Binding Quantity}" Width="80"/>
+                <DataGridTextColumn Header="Скидка %" Binding="{Binding DiscountPercent}" Width="80"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

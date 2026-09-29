@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="Cklad.Views.WarehouseView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ListView Grid.Row="1"
+                  ItemsSource="{Binding Warehouses}"
+                  SelectedItem="{Binding SelectedWarehouse}">
+
+            <ListView.InputBindings>
+                <MouseBinding MouseAction="LeftDoubleClick"
+                              Command="{Binding SelectCommand}"/>
+            </ListView.InputBindings>
+
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Открыть товары" Command="{Binding SelectCommand}"/>
+                    <Separator/>
+                    <MenuItem Header="Новый склад" Command="{Binding AddCommand}"/>
+                    <MenuItem Header="Изменить" Command="{Binding EditCommand}"/>
+                    <MenuItem Header="Удалить" Command="{Binding DeleteCommand}"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
+
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Название склада" Width="300"
+                                    DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Адрес" Width="400"
+                                    DisplayMemberBinding="{Binding Address}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</UserControl>
